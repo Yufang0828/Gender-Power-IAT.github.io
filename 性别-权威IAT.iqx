@@ -1,107 +1,534 @@
-﻿==============================================================================
-定义刺激材料：
-*label:类别标签
-*stim：权威、低权威词语\男、女性别名字
-feedback_wrong:在被试错误时的提示
 ==============================================================================
-<item quanwei_label>
-/1 = "权威"
+å®ä¹åºæ¿ææï¼
+*label:ç±»å«æ ç­¾
+*stimï¼æå¨ãä½æå¨è¯è¯­\ç·ãå¥³æ§å«åå­
+feedback_wrong:å¨è¢«è¯éè¯¯æ¶çæç¤º
+==============================================================================
+<item highpower_label>
+ /1 = "æå¨"
 </item>
 
-<item diquanwei_label>
-/1 = "低权威"
+<item lowpower_label>
+ /1 = "ä½æå¨"
 </item>
 
 <item female_label>
-/1 = "女性"
+ /1 = "å¥³æ§"
 </item>
 
 <item male_label>
-/1 = "男性"
+ /1 = "ç·æ§"
 </item>
 
-<item quanwei_stim>
-/1 = "领导"
-/2 = "主席"
-/3 = "老板"
-/4 = "主管"
-/5 = "上司"
+<item highpower_stim>
+ /1 = "é¢å¯¼"
+ /2 = "ä¸»å¸­"
+ /3 = "èæ¿"
+ /4 = "ä¸»ç®¡"
+ /5 = "ä¸å¸"
 </item>
 
-<item diquanwei_stim>"
-/1 = "雇员"
-/2 = "员工"
-/3 = "随从"
-/4 = "职工"
-/5 = "学徒"
+<item lowpower_stim>
+ /1 = "éå"
+ /2 = "åå·¥"
+ /3 = "éä»"
+ /4 = "èå·¥"
+ /5 = "å­¦å¾"
 </item>
 
 <item female_stim>
-/1 = "雨婷"
-/2 = "秀英"
-/3 = "欣怡"
-/4 = "晓兰"
-/5 = "雅静"
+ /1 = "é¨å©·"
+ /2 = "ç§è±"
+ /3 = "æ¬£æ¡"
+ /4 = "æå°"
+ /5 = "éé"
 </item>
 
 <item male_stim>
-/1 = "浩然"
-/2 = "景辉"
-/3 = "弘文"
-/4 = "俊杰"
-/5 = "建华"
+ /1 = "æµ©ç¶"
+ /2 = "æ¯è¾"
+ /3 = "å¼æ"
+ /4 = "ä¿æ°"
+ /5 = "å»ºå"
 </item>
 
 <item feedback_wrong>
-/1 = "×"
+ /1 = "Ã"
 </item>
-
-
 ===================================================
-定义计算反馈结果所需要的统计量及初始化：
-sum_*:block中一开始就正确反应且RT<10000ms的trial的反应时总和
-sqsum_*:block中正确反应时的平方和
-n_*:block中运行的trial总数
-n_correct:相容/不相容任务中正确trial总数
-result:被试偏好的程度
+defaults
+===================================================
+<defaults>
+/ fontstyle = ("Arial", 3.5%)
+/ screencolor = (0,0,0)
+/ txbgcolor = (0,0,0)
+/ txcolor = (255, 255, 255)
+/ minimumversion = "4.0.0.0"
+/ canvasaspectratio = (4, 3)
+</defaults>
+===================================================
+å®ä¹è®¡ç®åé¦ç»ææéè¦çç»è®¡éååå§åï¼
+sum_*:blockä¸­ä¸å¼å§å°±æ­£ç¡®ååºä¸RT<10000msçtrialçååºæ¶æ»å
+sqsum_*:blockä¸­æ­£ç¡®ååºæ¶çå¹³æ¹å
+n_*:blockä¸­è¿è¡çtrialæ»æ°
+n_correct:ç¸å®¹/ä¸ç¸å®¹ä»»å¡ä¸­æ­£ç¡®trialæ»æ°
+result:è¢«è¯åå¥½çç¨åº¦
 ===================================================
 <values>
-/ sum_xiangrong1 = 0 
-/ sum_xiangrong2 = 0 
-/ sum_buxiangrong1 = 0 
-/ sum_buxiangrong2 = 0 
-/ sqsum_xiangrong1 = 0
-/ sqsum_xiangrong2 = 0
-/ sqsum_buxiangrong1 = 0
-/ sqsum_buxiangrong2 = 0
-/ n_xiangrong1 = 0 
-/ n_xiangrong2 = 0 
-/ n_buxiangrong1 = 0 
-/ n_buxiangrong2 = 0 
-/ result = "未知"
+ / completed = 0
+ / sum_xiangrong1 = 0 
+ / sum_xiangrong2 = 0 
+ / sum_buxiangrong1 = 0 
+ / sum_buxiangrong2 = 0 
+ / sqsum_xiangrong1 = 0
+ / sqsum_xiangrong2 = 0
+ / sqsum_buxiangrong1 = 0
+ / sqsum_buxiangrong2 = 0
+ / n_xiangrong1 = 0 
+ / n_xiangrong2 = 0 
+ / n_buxiangrong1 = 0 
+ / n_buxiangrong2 = 0 
+ / result = "æªç¥"
+ / n_correct = 0
 </values>
 ===================================================
-定义统计量的计算表达式：
-m_*:正确反应的反应时均值
-t:相容/不相容任务正确反应时均值差异t分数
-correctpercent：相容/不相容任务的反应正确率
-ss_*:相容/不相容任务的正确反应时的离差平方和
-se:相容/不相容任务的正确反应时的标准误
+å®ä¹ç»è®¡éçè®¡ç®è¡¨è¾¾å¼ï¼
+m_*:æ­£ç¡®ååºçååºæ¶åå¼
+t:ç¸å®¹/ä¸ç¸å®¹ä»»å¡æ­£ç¡®ååºæ¶åå¼å·®å¼tåæ°
+correctpercentï¼ç¸å®¹/ä¸ç¸å®¹ä»»å¡çååºæ­£ç¡®ç
+ss:ç¸å®¹/ä¸ç¸å®¹ä»»å¡çæ­£ç¡®ååºæ¶çæ åè¯¯
 ===================================================
 <expressions>
-/ m_xiangrong = (sum_xiangrong1+sum_xiangrong2) / (n_xiangrong1 + n_xiangrong2)
-/ m_buxiangrong = (sum_buxiangrong1+sum_buxiangrong2) / (n_buxiangrong1 + n_buxiangrong2)
-/ ss_xiangrong1 = sqsum_xiangrong1 - sum_xiangrong1 * sum_xiangrong1 / n_xiangorng1
-/ ss_xiangrong2 = sqsum_xiangrong2 - sum_xiangrong2 * sum_xiangrong2 / n_xiangorng2 
-/ ss_buxiangrong1 = sqsum_buxiangrong1 - sum_buxiangrong1 * sum_xiangrong1 / n_xiangorng1
-/ ss_buxiangrong2 = sqsum_buxiangrong2 - sum_buxiangrong2 * sum_buxiangrong2 / n_buxiangorng2
-
+/ m_xiangrong1 = values.sum_xiangrong1 / values.n_xiangrong1
+/ m_xiangrong2 = values.sum_xiangrong2 / values.n_xiangrong2
+/ m_buxiangrong1 = values.sum_buxiangrong1 / values.n_buxiangrong1
+/ m_buxiangrong2 = values.sum_buxiangrong2 / values.n_buxiangrong2
+/ sd_xiangrong1 = sqrt((values.sqsum_xiangrong1 - (values.n_xiangrong1 * (expressions.m_xiangrong1 * expressions.m_xiangrong1))) / (values.n_xiangrong1 - 1))
+/ sd_xiangrong2 = sqrt((values.sqsum_xiangrong2 - (values.n_xiangrong2 * (expressions.m_xiangrong2 * expressions.m_xiangrong2))) / (values.n_xiangrong2 - 1))
+/ sd_buxiangrong1 = sqrt((values.sqsum_buxiangrong1 - (values.n_buxiangrong1 * (expressions.m_buxiangrong1 * expressions.m_buxiangrong1))) / (values.n_buxiangrong1 - 1))
+/ sd_buxiangrong2 = sqrt((values.sqsum_buxiangrong2 - (values.n_buxiangrong2 * (expressions.m_buxiangrong2 * expressions.m_buxiangrong2))) / (values.n_buxiangrong2 - 1))
+/ sd_xiangrong = sqrt((((values.n_xiangrong1 - 1) * (expressions.sd_xiangrong1 * expressions.sd_xiangrong1) + (values.n_xiangrong2 - 1) * (expressions.sd_xiangrong2 * expressions.sd_xiangrong2)) 
+					+ ((values.n_xiangrong1 + values.n_xiangrong2) * ((expressions.m_xiangrong1 - expressions.m_xiangrong2) * (expressions.m_xiangrong1 - expressions.m_xiangrong2)) / 4) ) / (values.n_xiangrong1 + values.n_xiangrong2 - 1) )
+/ sd_buxiangrong = sqrt((((values.n_buxiangrong1 - 1) * (expressions.sd_buxiangrong1 * expressions.sd_buxiangrong1) + (values.n_buxiangrong2 - 1) * (expressions.sd_buxiangrong2 * expressions.sd_buxiangrong2))
+					+ ((values.n_buxiangrong1 + values.n_buxiangrong2) * ((expressions.m_buxiangrong1 - expressions.m_buxiangrong2) * (expressions.m_buxiangrong1 - expressions.m_buxiangrong2)) / 4) ) / (values.n_buxiangrong1 + values.n_buxiangrong2 - 1) )
+/ d_xiangrong = (m_xiangrong1 - m_xiangrong2) / expressions.sd_xiangrong
+/ d_buxiangrong = (m_buxiangrong1 - m_buxiangrong2) / expressions.sd_buxiangrong
+/ d = (expressions.d_xiangrong + expressions.d_buxiangrong) / 2
+/ preferred = "æªç¥"
+/ notpreferred = "æªç¥"
+/ correctpercent = (values.n_correct/ (values.n_xiangrong1 + values.n_buxiangrong1 + values.n_xiangrong2 + values.n_buxiangrong2)) * 100
 </expressions>
-===================================================
-定义指导语
-===================================================
-<item intro_quanwei_pra>
 
+===================================================
+å®ä¹æå¯¼è¯­
+===================================================
+<item introductions>
+ /1 = "æ¨å¥½ï¼æ¬¢è¿åå æä»¬çå®éªï¼è¯·å°å·¦ææ¾å¨é®ççFé®ä¸ï¼å³ææ¾å¨é®ççIé®ä¸ãå¨å®éªè¿ç¨ä¸­ï¼å±å¹ä¸­å¤®ä¼åºç°ä¸äºåå­ãè¿äºåå­æçä»£è¡¨ç·æ§ï¼æçä»£è¡¨å¥³æ§ï¼å±å¹å·¦ä¾§åå³ä¾§ä¼åºç°æ§å«çç±»å«ã
+       è¯·éè¿æé®ä¸ºåå­éæ©ç¸åºçç±»å«ï¼å¶ä¸­ï¼Fé®è¡¨ç¤ºå·¦ä¾§çç±»å«ï¼Jé®è¡¨ç¤ºå³ä¾§çç±»å«ï¼å¦ææéï¼å®éªå°è¦æ±æ¨æ¹æ­£è¿æ¥æä¼ç»§ç»­è¿è¡ãè¯·å°½éå¿«éå°ååºéæ©ã"
+ /2 = "æ¥ä¸æ¥ï¼æä»¬å°éå¤ä¹åçæä½ï¼ä½æ¯å¨è¿æ¬¡å®éªä¸­ï¼å±å¹ä¸­å¤®çè¯è¯­ç±»å«å°ä¼æ¹åæèç§°ãè¿äºèç§°æçä»£è¡¨é«æå¨ï¼æçä»£è¡¨ä½æå¨ãè¯·ç»§ç»­éè¿FåJé®å¯¹è¯è¯­ç±»å«è¿è¡å¹éã"
+ /3 = "æ¥ä¸æ¥ï¼æä»¬çå®éªå°ååºä¸äºæ¹åãåä¸ªç±»å«çè¯å°äº¤æ¿åºç°ãåæ¶ï¼å±å¹ä¸¤ä¾§ä¼æè¯è¯­çç±»å«ï¼è¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ã"
+ /4 = "æ¥ä¸æ¥ï¼æä»¬å°éå¤ä¹åçå®éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
+ /5 = "æ¥ä¸æ¥ï¼å®éªä¸­ä¸åç±»å«çä½ç½®å°ååºä¸äºæ¹åãè¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ã"
+ /6 = "æ¥ä¸æ¥ï¼æä»¬å°éå¤ä¹åçå®éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
+ /7 = "æ¥ä¸æ¥ï¼å®éªä¸­ä¸åç±»å«çä½ç½®å°ååºä¸äºæ¹åãè¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ã"
+ /8 = "æ¥ä¸æ¥ï¼æä»¬å°éå¤ä¹åçå®éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
+ /9 = "æ¥ä¸æ¥ï¼å®éªä¸­ä¸åç±»å«çä½ç½®å°ååºä¸äºæ¹åãè¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ã"
+ /10 = "æ¥ä¸æ¥ï¼æä»¬å°éå¤ä¹åçå®éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
 </item>
 
+<text introductions>
+/ items = introductions
+/ hjustify = left
+/ size = (90%, 60%)
+/ position = (50%, 85%)
+/ valign = bottom
+/ select = sequence
+/ resetinterval = 20
+</text>
 
+<text space_begin>
+/ items = ("è¯·æç©ºæ ¼å¼å§")
+/ position = (50%, 95%)
+/ valign = bottom
+</text>
+
+<trial introductions>
+/ stimulustimes = [1=introduction, space_begin]
+/ correctresponse = (" ")
+/ errormessage = false
+/ recorddata = false
+</trial>
+===================================================
+texté¨å
+===================================================
+<text female>
+ / items = female_stim
+ / fontstyle = ("Lantinghei SC", 5%)
+ / txcolor = (0, 0, 0)
+</text>
+
+<text male>
+ / items = male_stim
+ / fontstyle = ("Lantinghei SC", 5%)
+ / txcolor = (0, 0, 0)
+</text>
+
+<text highpower>
+ / items = highpower_stim
+ / fontstyle = ("Lantinghei SC", 5%)
+ / txcolor = (0, 255, 0)
+</text>
+
+<text lowpower>
+ / items = lowpower_stim
+ / fontstyle = ("Lantinghei SC", 5%)
+ / txcolor = (0, 255, 0)
+</text>
+
+<text error>
+/ position = (50%, 75%)
+/ items = ("X")
+/ color = (255, 0, 0)
+/ fontstyle = ("Arial", 10%, true)
+</text>
+
+<text femalelabel_right>
+/ items = female_lable
+/ valign = top
+/ halign = right
+/ position = (95%, 40%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+<text femalelabel_left>
+/ items = female_lable
+/ valign = top
+/ halign = right
+/ position = (5%, 40%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+<text malelabel_right>
+/ items = male_lable
+/ valign = top
+/ halign = right
+/ position = (95%, 40%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+<text malelabel_left>
+/ items = male_lable
+/ valign = top
+/ halign = right
+/ position = (5%, 40%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+<text highpower_right>
+/ items = highpower_lable
+/ valign = top
+/ halign = right
+/ position = (95%, 60%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+<text highpower_left>
+/ items = highpower_lable
+/ valign = top
+/ halign = right
+/ position = (5%, 60%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+<text lowpower_right>
+/ items = lowpower_lable
+/ valign = top
+/ halign = right
+/ position = (95%, 60%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+<text lowpower_left>
+/ items = lowpower_lable
+/ valign = top
+/ halign = right
+/ position = (5%, 60%)
+/ txcolor = (0, 0, 0)
+/ fontstyle = ("Lantinghei SC", 5%)
+</text>
+
+===================================================
+trials
+===================================================
+
+<trial female_left>
+/ validresponse = ("F", "J")
+/ correctresponse = ("F")
+/ stimulusframes = [1 = female_left]
+/ posttrialpause = 250
+</trial>
+
+<trial female_right>
+/ validresponse = ("F", "J")
+/ correctresponse = ("J")
+/ stimulusframes = [1 = female_right]
+/ posttrialpause = 250
+</trial>
+
+<trial male_left>
+/ validresponse = ("F", "J")
+/ correctresponse = ("F")
+/ stimulusframes = [1 = male_left]
+/ posttrialpause = 250
+</trial>
+
+<trial male_right>
+/ validresponse = ("F", "J")
+/ correctresponse = ("J")
+/ stimulusframes = [1 = male_right]
+/ posttrialpause = 250
+</trial>
+
+<trial highpower_left>
+/ validresponse = ("F", "J")
+/ correctresponse = ("F")
+/ stimulusframes = [1 = highpower_left]
+/ posttrialpause = 250
+</trial>
+
+<trial highpower_right>
+/ validresponse = ("F", "J")
+/ correctresponse = ("J")
+/ stimulusframes = [1 = highpower_right]
+/ posttrialpause = 250
+</trial>
+
+<trial lowpower_left>
+/ validresponse = ("F", "J")
+/ correctresponse = ("F")
+/ stimulusframes = [1 = lowpower_left]
+/ posttrialpause = 250
+</trial>
+
+<trial lowpower_right>
+/ validresponse = ("F", "J")
+/ correctresponse = ("J")
+/ stimulusframes = [1 = lowpower_right]
+/ posttrialpause = 250
+</trial>
+
+<trial summary>
+/ stimulustimes = [0=summary]
+/ validresponse = (" ")
+/ recorddata = false
+/ ontrialbegin = [values.result = "æªç¥"]
+/ ontrialbegin = [if( abs(expressions.d) > 0.15 ) values.result = "ä¸ç¹"]
+/ ontrialbegin = [if( abs(expressions.d) > 0.35 ) values.result = "ä¸­ç­"]
+/ ontrialbegin = [if( abs(expressions.d) >= 0.65 ) values.result = "å¼ºç"]
+/ ontrialbegin = [if(expressions.d >= 0.0) expressions.preferred = item.targetALabel.1]
+/ ontrialbegin = [if(expressions.d < 0.0) expressions.preferred = item.targetBLabel.1]
+/ ontrialbegin = [if(expressions.d < 0.0) expressions.notpreferred= item.targetALabel.1]
+/ ontrialbegin = [if(expressions.d >= 0.0) expressions.notpreferred= item.targetBLabel.1]
+</trial>
+
+===================================================
+blocks
+===================================================
+
+<block female_male_practice>
+/ bgstim = (femalelabel_left, malelabel_right)
+/ trials = [1=introductions;2-21 = random(female_left,male_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block male_female_practice>
+/ bgstim = (malelabel_left, femalelabel_right)
+/ trials = [1=introductions;2-21 = random(male_left,female_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block high_low_practice>
+/ bgstim = (highpower_left, lowpower_right)
+/ trials = [1=introductions;2-21 = random(highpower_left,lowpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block low_high_practice>
+/ bgstim = (lowpower_left, highpower_right)
+/ trials = [1=introductions;2-21 = random(lowpower_left,highpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block xiangrong1_practice>
+/ bgstim = (femalelabel_left, malelabel_right, lowpower_left, highpower_right)
+/ trials = [1=introductions;
+  3,5,7,9,11,13,15,17,19,21= random(female_left, male_right);
+  2,4,6,8,10,12,14,16,18,20 = random(lowpower_left, highpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block xiangrong2_practice>
+/ bgstim = (malelabel_left, femalelabel_right, highpower_left, lowpower_right)
+/ trials = [1=introductions;
+  3,5,7,9,11,13,15,17,19,21= random(male_left, female_right);
+  2,4,6,8,10,12,14,16,18,20 = random(highpower_left, lowpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block buxiangrong1_practice>
+/ bgstim = (femalelabel_left, malelabel_right, highpower_left, lowpower_right)
+/ trials = [1=introductions;
+  3,5,7,9,11,13,15,17,19,21= random(female_left, male_right);
+  2,4,6,8,10,12,14,16,18,20 = random(highpower_left, lowpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block buxiangrong2_practice>
+/ bgstim = (malelabel_left, femalelabel_right, lowpower_left, highpower_right)
+/ trials = [1=introductions;
+  3,5,7,9,11,13,15,17,19,21= random(male_left, female_right);
+  2,4,6,8,10,12,14,16,18,20 = random(lowpower_left, highpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+</block>
+
+<block xiangrong1_intro>
+/ bgstim = (femalelabel_left, malelabel_right, lowpower_left, highpower_right)
+/ trials = [1=introductions]
+/ recorddata = false
+</block>
+
+<block xiangrong2_intro>
+/ bgstim = (malelabel_left, femalelabel_right, highpower_left, lowpower_right)
+/ trials = [1=introductions]
+/ recorddata = false
+</block>
+
+<block buxiangrong1_intro>
+/ bgstim = (femalelabel_left, malelabel_right, highpower_left, lowpower_right)
+/ trials = [1=introductions]
+/ recorddata = false
+</block>
+
+<block buxiangrong2_intro>
+/ bgstim = (malelabel_left, femalelabel_right, lowpower_left, highpower_right)
+/ trials = [1=introductions]
+/ recorddata = false
+</block>
+
+<block xiangrong1_test>
+/ bgstim = (femalelabel_left, malelabel_right, lowpower_left, highpower_right)
+/ trials = [
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(female_left, male_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(lowpower_left, highpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.xiangrong1_test.latency  <= 10000) values.sum_xiangrong1 =  values.sum_xiangrong1 + block.xiangrong1_test.latency]
+/ ontrialend = [if(block.xiangrong1_test.latency  <= 10000) values.n_xiangrong1 +=  1]
+/ ontrialend = [if(block.xiangrong1_test.latency  <= 10000) values.sqsum_xiangrong1 =  values.sqsum_xiangrong1 + (block.xiangrong1_test.latency * block.xiangrong1_test.latency)]
+/ ontrialend = [if(block.xiangrong1_test.latency  <= 10000) values.n_correct += block.xiangrong1_test.correct]
+</block>
+
+<block xiangrong2_test>
+/ bgstim = (malelabel_left, femalelabel_right, highpower_left, lowpower_right)
+/ trials = [
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(male_left, female_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(highpower_left, lowpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.xiangrong2_test.latency  <= 10000) values.sum_xiangrong2 =  values.sum_xiangrong2 + block.xiangrong2_test.latency]
+/ ontrialend = [if(block.xiangrong2_test.latency  <= 10000) values.n_xiangrong2 +=  1]
+/ ontrialend = [if(block.xiangrong2_test.latency  <= 10000) values.sqsum_xiangrong2 =  values.sqsum_xiangrong2 + (block.xiangrong2_test.latency * block.xiangrong2_test.latency)]
+/ ontrialend = [if(block.xiangrong2_test.latency  <= 10000) values.n_correct += block.xiangrong2_test.correct]
+</block>
+
+<block buxiangrong1_test>
+/ bgstim = (femalelabel_left, malelabel_right, highpower_left, lowpower_right)
+/ trials = [
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(female_left, male_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(highpower_left, lowpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.buxiangrong1_test.latency  <= 10000) values.sum_buxiangrong1 =  values.sum_buxiangrong1 + block.buxiangrong1_test.latency]
+/ ontrialend = [if(block.buxiangrong1_test.latency  <= 10000) values.n_buxiangrong1 +=  1]
+/ ontrialend = [if(block.buxiangrong1_test.latency  <= 10000) values.sqsum_buxiangrong1 =  values.sqsum_buxiangrong1 + (block.buxiangrong1_test.latency * block.buxiangrong1_test.latency)]
+/ ontrialend = [if(block.buxiangrong1_test.latency  <= 10000) values.n_correct += block.buxiangrong1_test.correct]
+</block>
+
+<block buxiangrong2_test>
+/ bgstim = (malelabel_left, femalelabel_right, lowpower_left, highpower_right)
+/ trials = [
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(male_left, female_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(lowpower_left, highpower_right)]
+/ errormessage = true(error,200)
+/ responsemode = correct
+/ ontrialend = [if(block.buxiangrong2_test.latency  <= 10000) values.sum_buxiangrong2 =  values.sum_buxiangrong2 + block.buxiangrong2_test.latency]
+/ ontrialend = [if(block.buxiangrong2_test.latency  <= 10000) values.n_buxiangrong2 +=  1]
+/ ontrialend = [if(block.buxiangrong2_test.latency  <= 10000) values.sqsum_buxiangrong2 =  values.sqsum_buxiangrong2 + (block.buxiangrong2_test.latency * block.buxiangrong2_test.latency)]
+/ ontrialend = [if(block.buxiangrong2_test.latency  <= 10000) values.n_correct += block.buxiangrong2_test.correct]
+</block>
+
+===================================================
+experiments
+===================================================
+<expt >
+/subjects = (1 of 4)
+/ groupassignment = groupnumber
+/ blocks = [1=female_male_practice; 2=high_low_practice; 
+			3=xiangrong1_practice; 4=xiangrong1_intro; 5=xiangrong1_test; 6=xiangrong2_practice; 7=xiangrong2_intro; 8=xiangrong2_test; 
+			9=buxiangrong1_practice; 10=buxiangrong1_intro; 11=buxiangrong1_test; 12=buxiangrong2_practice; 13=buxiangrong2_intro; 14=buxiangrong2_test; 
+				15=summary]
+/onexptend = [values.completed = 1]
+</expt>
+
+<expt >
+/subjects = (2 of 4)
+/ groupassignment = groupnumber
+/ blocks = [1=male_female_practice; 2=high_low_practice; 
+			3=buxiangrong1_practice; 4=buxiangrong1_intro; 5=buxiangrong1_test; 6=buxiangrong2_practice; 7=buxiangrong2_intro; 8=buxiangrong2_test; 
+			9=xiangrong1_practice; 10=xiangrong1_intro; 11=xiangrong1_test; 12=xiangrong2_practice; 13=xiangrong2_intro; 14=xiangrong2_test; 
+				15=summary]
+/onexptend = [values.completed = 1]
+</expt>
+
+<expt >
+/subjects = (3 of 4)
+/ groupassignment = groupnumber
+/ blocks = [1=male_female_practice; 2=high_low_practice; 
+			3=xiangrong1_practice; 4=xiangrong1_intro; 5=xiangrong1_test; 6=xiangrong2_practice; 7=xiangrong2_intro; 8=xiangrong2_test; 
+			9=buxiangrong1_practice; 10=buxiangrong1_intro; 11=buxiangrong1_test; 12=buxiangrong2_practice; 13=buxiangrong2_intro; 14=buxiangrong2_test; 
+				15=summary]
+/onexptend = [values.completed = 1]
+</expt>
+
+<expt >
+/subjects = (4 of 4)
+/ groupassignment = groupnumber
+/ blocks = [1=female_fale_practice; 2=high_low_practice; 
+			3=buxiangrong1_practice; 4=buxiangrong1_intro; 5=buxiangrong1_test; 6=buxiangrong2_practice; 7=buxiangrong2_intro; 8=buxiangrong2_test; 
+			9=xiangrong1_practice; 10=xiangrong1_intro; 11=xiangrong1_test; 12=xiangrong2_practice; 13=xiangrong2_intro; 14=xiangrong2_test; 
+				15=summary]
+/onexptend = [values.completed = 1]
+</expt>
+
+***********************************************************************
+Test Monkey
+***********************************************************************
+<monkey>
+/ latencydistribution = normal(500, 100)
+/ percentcorrect = 90
+</monkey>
