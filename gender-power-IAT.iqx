@@ -1,59 +1,59 @@
-﻿==============================================================================
-定义刺激材料：
-*label:类别标签
-*stim：权威、低权威词语\男、女性别名字
-feedback_wrong:在被试错误时的提示
+==============================================================================
+å®ä¹åºæ¿ææï¼
+*label:ç±»å«æ ç­¾
+*stimï¼æå¨ãä½æå¨è¯è¯­\ç·ãå¥³æ§å«åå­
+feedback_wrong:å¨è¢«è¯éè¯¯æ¶çæç¤º
 ==============================================================================
 <item highpower_label>
- /1 = "权威"
+ /1 = "æå¨"
 </item>
 
 <item lowpower_label>
- /1 = "低权威"
+ /1 = "ä½æå¨"
 </item>
 
 <item female_label>
- /1 = "female"
+ /1 = "å¥³æ§"
 </item>
 
 <item male_label>
- /1 = "male"
+ /1 = "ç·æ§"
 </item>
 
 <item highpower_stim>
- /1 = "领导"
- /2 = "主席"
- /3 = "老板"
- /4 = "主管"
- /5 = "上司"
+ /1 = "é¢å¯¼"
+ /2 = "ä¸»å¸­"
+ /3 = "èæ¿"
+ /4 = "ä¸»ç®¡"
+ /5 = "ä¸å¸"
 </item>
 
 <item lowpower_stim>
- /1 = "雇员"
- /2 = "员工"
- /3 = "随从"
- /4 = "职工"
- /5 = "学徒"
+ /1 = "éå"
+ /2 = "åå·¥"
+ /3 = "éä»"
+ /4 = "èå·¥"
+ /5 = "å­¦å¾"
 </item>
 
 <item female_stim>
- /1 = "雨婷"
- /2 = "秀英"
- /3 = "欣怡"
- /4 = "晓兰"
- /5 = "雅静"
+ /1 = "é¨å©·"
+ /2 = "ç§è±"
+ /3 = "æ¬£æ¡"
+ /4 = "æå°"
+ /5 = "éé"
 </item>
 
 <item male_stim>
- /1 = "浩然"
- /2 = "景辉"
- /3 = "弘文"
- /4 = "俊杰"
- /5 = "建华"
+ /1 = "æµ©ç¶"
+ /2 = "æ¯è¾"
+ /3 = "å¼æ"
+ /4 = "ä¿æ°"
+ /5 = "å»ºå"
 </item>
 
 <item feedback_wrong>
- /1 = "×"
+ /1 = "Ã"
 </item>
 ===================================================
 defaults
@@ -65,12 +65,12 @@ defaults
 / txcolor = (255, 255, 255)
 </defaults>
 ===================================================
-定义计算反馈结果所需要的统计量及初始化：
-sum_*:block中一开始就正确反应且RT<10000ms的trial的反应时总和
-sqsum_*:block中正确反应时的平方和
-n_*:block中运行的trial总数
-n_correct:相容/不相容任务中正确trial总数
-result:被试偏好的程度
+å®ä¹è®¡ç®åé¦ç»ææéè¦çç»è®¡éååå§åï¼
+sum_*:blockä¸­ä¸å¼å§å°±æ­£ç¡®ååºä¸RT<10000msçtrialçååºæ¶æ»å
+sqsum_*:blockä¸­æ­£ç¡®ååºæ¶çå¹³æ¹å
+n_*:blockä¸­è¿è¡çtrialæ»æ°
+n_correct:ç¸å®¹/ä¸ç¸å®¹ä»»å¡ä¸­æ­£ç¡®trialæ»æ°
+result:è¢«è¯åå¥½çç¨åº¦
 ===================================================
 <values>
  / completed = 0
@@ -86,14 +86,14 @@ result:被试偏好的程度
  / n_xiangrong2 = 0 
  / n_buxiangrong1 = 0 
  / n_buxiangrong2 = 0 
- / result = "未知"
+ / result = "æªç¥"
  / n_correct = 0
 </values>
 ===================================================
-定义统计量的计算表达式：
-m_*:正确反应的反应时均值
-sd:相容/不相容任务的正确反应时的标准误
-d*:d分数
+å®ä¹ç»è®¡éçè®¡ç®è¡¨è¾¾å¼ï¼
+m_*:æ­£ç¡®ååºçååºæ¶åå¼
+sd:ç¸å®¹/ä¸ç¸å®¹ä»»å¡çæ­£ç¡®ååºæ¶çæ åè¯¯
+d*:dåæ°
 ===================================================
 <expressions>
 / m_xiangrong = (values.sum_xiangrong1 + values.sum_xiangrong2) / (values.n_xiangrong1 + values.n_xiangrong2)
@@ -102,30 +102,29 @@ d*:d分数
 / sqsum_buxiangrong = (values.sqsum_buxiangrong1 + values.sqsum_buxiangrong2) / 2
 / n_xiangrong = (values.n_xiangrong1 + values.n_xiangrong2) / 2
 / n_buxiangrong = (values.n_buxiangrong1 + values.n_buxiangrong2) / 2
-/ sd_xiangrong = sqrt((values.sqsum_xiangrong - (values.n_xiangrong * (expressions.m_xiangrong * expressions.m_xiangrong))) / (values.n_xiangrong - 1))
-/ sd_buxiangrong = sqrt((values.sqsum_buxiangrong - (values.n_buxiangrong * (expressions.m_buxiangrong * expressions.m_buxiangrong))) / (values.n_buxiangrong - 1))
-/ sd = sqrt((((values.n_xiangrong - 1) * (expressions.sd_xiangrong * expressions.sd_xiangrong) + (values.n_buxiangrong - 1) * (expressions.sd_buxiangrong * expressions.sd_buxaingrong)) + ((values.n1a + values.n_buxiangrong) * ((expressions.m1a - expressions.m_buxaingrong) * (expressions.m_xiangrong - expressions.m_buxiangrong)) / 4) ) / (expressions.n_xiangrong + expressions.n_buxiangrong - 1) )
+/ sd_xiangrong = sqrt((expressions.sqsum_xiangrong - (expressions.n_xiangrong * (expressions.m_xiangrong * expressions.m_xiangrong))) / (expressions.n_xiangrong - 1))
+/ sd_buxiangrong = sqrt((expressions.sqsum_buxiangrong - (expressions.n_buxiangrong * (expressions.m_buxiangrong * expressions.m_buxiangrong))) / (expressions.n_buxiangrong - 1))
+/ sd = sqrt((((expressions.n_xiangrong - 1) * (expressions.sd_xiangrong * expressions.sd_xiangrong) + (expressions.n_buxiangrong - 1) * (expressions.sd_buxiangrong * expressions.sd_buxiangrong)) + ((expressions.n_xiangrong + expressions.n_buxiangrong) * ((expressions.m_xiangrong - expressions.m_buxiangrong) * (expressions.m_xiangrong - expressions.m_buxiangrong)) / 4) ) / (expressions.n_xiangrong + expressions.n_buxiangrong - 1) )
 / d = (m_xiangrong - m_buxiangrong) / expressions.sd
-/ preferred = "未知"
-/ notpreferred = "未知"
+/ preferred = "æªç¥"
+/ notpreferred = "æªç¥"
 / correctpercent = (values.n_correct/ (values.n_xiangrong1 + values.n_buxiangrong1 + values.n_xiangrong2 + values.n_buxiangrong2)) * 100
 </expressions>
-
 ===================================================
-定义指导语
+å®ä¹æå¯¼è¯­
 ===================================================
 <item introductions>
- /1 = "您好，欢迎参加我们的实验！请将左手放在键盘的F键上，右手放在键盘的J键上。接下来，屏幕中央会出现一些名字，有的代表男性，有的代表女性。屏幕左侧和右侧分别对应不同性别的类别。
-       请通过按键为名字选择相应的类别，其中，F键表示左侧的类别，J键表示右侧的类别，如果按错，请马上按另一个键作出正确反应。请尽量快速地做出选择。"
- /2 = "接下来，我们将重复之前的操作，但是在这次实验中，屏幕中央的词语类别将会改变成职称。这些职称有的代表高权威，有的代表低权威。请继续通过F和J键对词语类别进行匹配。"
- /3 = "接下来，我们的实验将做出一些改变。四个类别的词将交替出现。同时，屏幕两侧会有词语的类别，请通过F和J键选择词语所对应的类别在左侧或是右侧。请按空格键开始练习"
- /4 = "接下来，我们将开始正式试验，请尽快准确作答。"
- /5 = "接下来，实验中不同类别的位置将做出一些改变。请通过F和J键选择词语所对应的类别在左侧或是右侧。请按空格键开始练习"
- /6 = "接下来，我们将开始正式试验，请尽快准确作答。"
- /7 = "接下来，实验中不同类别的位置将做出一些改变。请通过F和J键选择词语所对应的类别在左侧或是右侧。请按空格键开始练习"
- /8 = "接下来，我们将开始正式试验，请尽快准确作答。"
- /9 = "接下来，实验中不同类别的位置将做出一些改变。请通过F和J键选择词语所对应的类别在左侧或是右侧。请按空格键开始练习"
- /10 = "接下来，我们将开始正式试验，请尽快准确作答。"
+ /1 = "æ¨å¥½ï¼æ¬¢è¿åå æä»¬çå®éªï¼è¯·å°å·¦ææ¾å¨é®ççFé®ä¸ï¼å³ææ¾å¨é®ççJé®ä¸ãæ¥ä¸æ¥ï¼å±å¹ä¸­å¤®ä¼åºç°ä¸äºåå­ï¼æçä»£è¡¨ç·æ§ï¼æçä»£è¡¨å¥³æ§ãå±å¹å·¦ä¾§åå³ä¾§åå«å¯¹åºä¸åæ§å«çç±»å«ã
+       è¯·éè¿æé®ä¸ºåå­éæ©ç¸åºçç±»å«ï¼å¶ä¸­ï¼Fé®è¡¨ç¤ºå·¦ä¾§çç±»å«ï¼Jé®è¡¨ç¤ºå³ä¾§çç±»å«ï¼å¦ææéï¼è¯·é©¬ä¸æå¦ä¸ä¸ªé®ä½åºæ­£ç¡®ååºãè¯·å°½éå¿«éå°ååºéæ©ã"
+ /2 = "æ¥ä¸æ¥ï¼æä»¬å°éå¤ä¹åçæä½ï¼ä½æ¯å¨è¿æ¬¡å®éªä¸­ï¼å±å¹ä¸­å¤®çè¯è¯­ç±»å«å°ä¼æ¹åæèç§°ãè¿äºèç§°æçä»£è¡¨é«æå¨ï¼æçä»£è¡¨ä½æå¨ãè¯·ç»§ç»­éè¿FåJé®å¯¹è¯è¯­ç±»å«è¿è¡å¹éã"
+ /3 = "æ¥ä¸æ¥ï¼æä»¬çå®éªå°ååºä¸äºæ¹åãåä¸ªç±»å«çè¯å°äº¤æ¿åºç°ãåæ¶ï¼å±å¹ä¸¤ä¾§ä¼æè¯è¯­çç±»å«ï¼è¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ãè¯·æç©ºæ ¼é®å¼å§ç»ä¹ "
+ /4 = "æ¥ä¸æ¥ï¼æä»¬å°å¼å§æ­£å¼è¯éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
+ /5 = "æ¥ä¸æ¥ï¼å®éªä¸­ä¸åç±»å«çä½ç½®å°ååºä¸äºæ¹åãè¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ãè¯·æç©ºæ ¼é®å¼å§ç»ä¹ "
+ /6 = "æ¥ä¸æ¥ï¼æä»¬å°å¼å§æ­£å¼è¯éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
+ /7 = "æ¥ä¸æ¥ï¼å®éªä¸­ä¸åç±»å«çä½ç½®å°ååºä¸äºæ¹åãè¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ãè¯·æç©ºæ ¼é®å¼å§ç»ä¹ "
+ /8 = "æ¥ä¸æ¥ï¼æä»¬å°å¼å§æ­£å¼è¯éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
+ /9 = "æ¥ä¸æ¥ï¼å®éªä¸­ä¸åç±»å«çä½ç½®å°ååºä¸äºæ¹åãè¯·éè¿FåJé®éæ©è¯è¯­æå¯¹åºçç±»å«å¨å·¦ä¾§ææ¯å³ä¾§ãè¯·æç©ºæ ¼é®å¼å§ç»ä¹ "
+ /10 = "æ¥ä¸æ¥ï¼æä»¬å°å¼å§æ­£å¼è¯éªï¼è¯·å°½å¿«åç¡®ä½ç­ã"
 </item>
 
 <text introductions>
@@ -139,7 +138,7 @@ d*:d分数
 </text>
 
 <text space_begin>
-/ items = ("请按空格开始")
+/ items = ("è¯·æç©ºæ ¼å¼å§")
 / position = (50%, 95%)
 / valign = bottom
 </text>
@@ -151,7 +150,7 @@ d*:d分数
 / recorddata = false
 </trial>
 ===================================================
-text部分
+texté¨å
 ===================================================
 <text female>
  / items = female_stim
@@ -301,10 +300,10 @@ trials
 </trial>
 
 =====================================================
-summary：给参与者的反馈
+summaryï¼ç»åä¸èçåé¦
 =====================================================
 <text summary>
-/ items = ("你内隐联想测验的得分为 <% expressions.d %>, 这意味着你有 <% values.result %> 的倾向认为 <% expressions.preferred %> 相比于 <% expressions.notpreferred %>与权威角色有更强的联系。~n~n~n请按空格键退出本次实验。") 
+/ items = ("ä½ åéèæ³æµéªçå¾åä¸º <% expressions.d %>, è¿æå³çä½ æ <% values.result %> çå¾åè®¤ä¸º <% expressions.preferred %> ç¸æ¯äº <% expressions.notpreferred %>ä¸æå¨è§è²ææ´å¼ºçèç³»ã~n~n~nè¯·æç©ºæ ¼é®éåºæ¬æ¬¡å®éªã") 
 / size = (60%, 60%)
 / hjustify = left
  </text>
@@ -314,14 +313,14 @@ summary：给参与者的反馈
 / stimulustimes = [0=summary]
 / validresponse = (" ")
 / recorddata = false
-/ ontrialbegin = [values.result = "未知"]
-/ ontrialbegin = [if( abs(expressions.d) > 0.15 ) values.result = "一点"]
-/ ontrialbegin = [if( abs(expressions.d) > 0.35 ) values.result = "中等"]
-/ ontrialbegin = [if( abs(expressions.d) >= 0.65 ) values.result = "强烈"]
-/ ontrialbegin = [if(expressions.d >= 0.0) expressions.preferred = item.male_label]
-/ ontrialbegin = [if(expressions.d < 0.0) expressions.preferred = item.female_label]
-/ ontrialbegin = [if(expressions.d < 0.0) expressions.notpreferred= item.male_label]
-/ ontrialbegin = [if(expressions.d >= 0.0) expressions.notpreferred= item.female_label]
+/ ontrialbegin = [values.result = "æªç¥"]
+/ ontrialbegin = [if( abs(expressions.d) > 0.15 ) values.result = "ä¸ç¹"]
+/ ontrialbegin = [if( abs(expressions.d) > 0.35 ) values.result = "ä¸­ç­"]
+/ ontrialbegin = [if( abs(expressions.d) >= 0.65 ) values.result = "å¼ºç"]
+/ ontrialbegin = [if(expressions.d >= 0.0) expressions.preferred = item.female_label.1]
+/ ontrialbegin = [if(expressions.d < 0.0) expressions.preferred = item.male_label.1]
+/ ontrialbegin = [if(expressions.d < 0.0) expressions.notpreferred= item.female_label.1]
+/ ontrialbegin = [if(expressions.d >= 0.0) expressions.notpreferred= item.male_label.1]
 </trial>
 
 ===================================================
@@ -330,28 +329,28 @@ blocks
 
 <block female_male_practice>
 / bgstim = (femalelabel_left, malelabel_right)
-/ trials = [1=introductions;2-4 = random(female_left,male_right)]
+/ trials = [1=introductions;2-21 = random(female_left,male_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 </block>
 
 <block male_female_practice>
 / bgstim = (malelabel_left, femalelabel_right)
-/ trials = [1=introductions;2-4 = random(male_left,female_right)]
+/ trials = [1=introductions;2-21 = random(male_left,female_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 </block>
 
 <block high_low_practice>
 / bgstim = (highpower_left, lowpower_right)
-/ trials = [1=introductions;2-4 = random(highpower_left,lowpower_right)]
+/ trials = [1=introductions;2-21 = random(highpower_left,lowpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 </block>
 
 <block low_high_practice>
 / bgstim = (lowpower_left, highpower_right)
-/ trials = [1=introductions;2-4 = random(lowpower_left,highpower_right)]
+/ trials = [1=introductions;2-21 = random(lowpower_left,highpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 </block>
@@ -368,8 +367,8 @@ blocks
 <block xiangrong2_practice>
 / bgstim = (malelabel_left, femalelabel_right, highpower_left, lowpower_right)
 / trials = [1=introductions;
-  3,5,7= random(male_left, female_right);
-  2,4,6= random(highpower_left, lowpower_right)]
+  3,5,7,9,11= random(male_left, female_right);
+  2,4,6,8,10= random(highpower_left, lowpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 </block>
@@ -377,8 +376,8 @@ blocks
 <block buxiangrong1_practice>
 / bgstim = (femalelabel_left, malelabel_right, highpower_left, lowpower_right)
 / trials = [1=introductions;
-  3,5,7= random(female_left, male_right);
-  2,4,6 = random(highpower_left, lowpower_right)]
+  3,5,7,9,11 = random(female_left, male_right);
+  2,4,6,8,10 = random(highpower_left, lowpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 </block>
@@ -386,8 +385,8 @@ blocks
 <block buxiangrong2_practice>
 / bgstim = (malelabel_left, femalelabel_right, lowpower_left, highpower_right)
 / trials = [1=introductions;
-  3,5,7= random(male_left, female_right);
-  2,4,6 = random(lowpower_left, highpower_right)]
+  3,5,7,9,11 = random(male_left, female_right);
+  2,4,6,8,10 = random(lowpower_left, highpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 </block>
@@ -419,8 +418,8 @@ blocks
 <block xiangrong1_test>
 / bgstim = (femalelabel_left, malelabel_right, lowpower_left, highpower_right)
 / trials = [
-  1,3 = random(female_left, male_right);
-  2,4 = random(lowpower_left, highpower_right)]
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(female_left, male_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(lowpower_left, highpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 / ontrialend = [if(block.xiangrong1_test.latency  <= 10000) values.sum_xiangrong1 =  values.sum_xiangrong1 + block.xiangrong1_test.latency]
@@ -432,8 +431,8 @@ blocks
 <block xiangrong2_test>
 / bgstim = (malelabel_left, femalelabel_right, highpower_left, lowpower_right)
 / trials = [
-  1,3 = random(male_left, female_right);
-  2,4 = random(highpower_left, lowpower_right)]
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(male_left, female_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(highpower_left, lowpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 / ontrialend = [if(block.xiangrong2_test.latency  <= 10000) values.sum_xiangrong2 =  values.sum_xiangrong2 + block.xiangrong2_test.latency]
@@ -445,8 +444,8 @@ blocks
 <block buxiangrong1_test>
 / bgstim = (femalelabel_left, malelabel_right, highpower_left, lowpower_right)
 / trials = [
-  1,3 = random(female_left, male_right);
-  2,4 = random(highpower_left, lowpower_right)]
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(female_left, male_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(highpower_left, lowpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 / ontrialend = [if(block.buxiangrong1_test.latency  <= 10000) values.sum_buxiangrong1 =  values.sum_buxiangrong1 + block.buxiangrong1_test.latency]
@@ -458,8 +457,8 @@ blocks
 <block buxiangrong2_test>
 / bgstim = (malelabel_left, femalelabel_right, lowpower_left, highpower_right)
 / trials = [
-  1,3 = random(male_left, female_right);
-  2,4 = random(lowpower_left, highpower_right)]
+  1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39 = random(male_left, female_right);
+  2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40 = random(lowpower_left, highpower_right)]
 / errormessage = true(error,200)
 / responsemode = correct
 / ontrialend = [if(block.buxiangrong2_test.latency  <= 10000) values.sum_buxiangrong2 =  values.sum_buxiangrong2 + block.buxiangrong2_test.latency]
