@@ -96,21 +96,16 @@ sd:相容/不相容任务的正确反应时的标准误
 d*:d分数
 ===================================================
 <expressions>
-/ m_xiangrong1 = values.sum_xiangrong1 / values.n_xiangrong1
-/ m_xiangrong2 = values.sum_xiangrong2 / values.n_xiangrong2
-/ m_buxiangrong1 = values.sum_buxiangrong1 / values.n_buxiangrong1
-/ m_buxiangrong2 = values.sum_buxiangrong2 / values.n_buxiangrong2
-/ sd_xiangrong1 = sqrt((values.sqsum_xiangrong1 - (values.n_xiangrong1 * (expressions.m_xiangrong1 * expressions.m_xiangrong1))) / (values.n_xiangrong1 - 1))
-/ sd_xiangrong2 = sqrt((values.sqsum_xiangrong2 - (values.n_xiangrong2 * (expressions.m_xiangrong2 * expressions.m_xiangrong2))) / (values.n_xiangrong2 - 1))
-/ sd_buxiangrong1 = sqrt((values.sqsum_buxiangrong1 - (values.n_buxiangrong1 * (expressions.m_buxiangrong1 * expressions.m_buxiangrong1))) / (values.n_buxiangrong1 - 1))
-/ sd_buxiangrong2 = sqrt((values.sqsum_buxiangrong2 - (values.n_buxiangrong2 * (expressions.m_buxiangrong2 * expressions.m_buxiangrong2))) / (values.n_buxiangrong2 - 1))
-/ sd_xiangrong = sqrt((((values.n_xiangrong1 - 1) * (expressions.sd_xiangrong1 * expressions.sd_xiangrong1) + (values.n_xiangrong2 - 1) * (expressions.sd_xiangrong2 * expressions.sd_xiangrong2)) 
-					+ ((values.n_xiangrong1 + values.n_xiangrong2) * ((expressions.m_xiangrong1 - expressions.m_xiangrong2) * (expressions.m_xiangrong1 - expressions.m_xiangrong2)) / 4) ) / (values.n_xiangrong1 + values.n_xiangrong2 - 1) )
-/ sd_buxiangrong = sqrt((((values.n_buxiangrong1 - 1) * (expressions.sd_buxiangrong1 * expressions.sd_buxiangrong1) + (values.n_buxiangrong2 - 1) * (expressions.sd_buxiangrong2 * expressions.sd_buxiangrong2))
-					+ ((values.n_buxiangrong1 + values.n_buxiangrong2) * ((expressions.m_buxiangrong1 - expressions.m_buxiangrong2) * (expressions.m_buxiangrong1 - expressions.m_buxiangrong2)) / 4) ) / (values.n_buxiangrong1 + values.n_buxiangrong2 - 1) )
-/ d_xiangrong = (m_xiangrong1 - m_xiangrong2) / expressions.sd_xiangrong
-/ d_buxiangrong = (m_buxiangrong1 - m_buxiangrong2) / expressions.sd_buxiangrong
-/ d = (expressions.d_xiangrong + expressions.d_buxiangrong) / 2
+/ m_xiangrong = (values.sum_xiangrong1 + values.sum_xiangrong2) / (values.n_xiangrong1 + values.n_xiangrong2)
+/ m_buxiangrong = (values.sum_buxiangrong1 + values.sum_buxiangrong2) / (values.n_buxiangrong1 + values.n_buxiangrong2)
+/ sqsum_xiangrong = (values.sqsum_xiangrong1 + values.sqsum_xiangrong2) / 2
+/ sqsum_buxiangrong = (values.sqsum_buxiangrong1 + values.sqsum_buxiangrong2) / 2
+/ n_xiangrong = (values.n_xiangrong1 + values.n_xiangrong2) / 2
+/ n_buxiangrong = (values.n_buxiangrong1 + values.n_buxiangrong2) / 2
+/ sd_xiangrong = sqrt((values.sqsum_xiangrong - (values.n_xiangrong * (expressions.m_xiangrong * expressions.m_xiangrong))) / (values.n_xiangrong - 1))
+/ sd_buxiangrong = sqrt((values.sqsum_buxiangrong - (values.n_buxiangrong * (expressions.m_buxiangrong * expressions.m_buxiangrong))) / (values.n_buxiangrong - 1))
+/ sd = sqrt((((values.n_xiangrong - 1) * (expressions.sd_xiangrong * expressions.sd_xiangrong) + (values.n_buxiangrong - 1) * (expressions.sd_buxiangrong * expressions.sd_buxaingrong)) + ((values.n1a + values.n_buxiangrong) * ((expressions.m1a - expressions.m_buxaingrong) * (expressions.m_xiangrong - expressions.m_buxiangrong)) / 4) ) / (expressions.n_xiangrong + expressions.n_buxiangrong - 1) )
+/ d = (m_xiangrong - m_buxiangrong) / expressions.sd
 / preferred = "未知"
 / notpreferred = "未知"
 / correctpercent = (values.n_correct/ (values.n_xiangrong1 + values.n_buxiangrong1 + values.n_xiangrong2 + values.n_buxiangrong2)) * 100
